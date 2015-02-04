@@ -3,7 +3,7 @@
 # Bash Install Phalcon for Centos 6.x VestaCP
 
 # Downgrade PHP to 5.3
-/usr/bin/yum downgrade php*
+/usr/bin/yum downgrade -y php*
 
 # Install Phalcon Requirement
 /usr/bin/yum install -y php-devel php-mysql gcc libtool
@@ -22,6 +22,7 @@ service httpd restart
 # Install Phalcon Development Tools
 mkdir /usr/local/phalcon && cd /usr/local/phalcon
 curl -s http://getcomposer.org/installer | php
+rm composer.json
 echo '{' >> composer.json
 echo '    "require": {' >> composer.json
 echo '        "phalcon/devtools": "dev-master"' >> composer.json
