@@ -2,6 +2,19 @@
 # Created by Robbyn
 # Bash Install Phalcon for Centos 6.x VestaCP
 
+# Install Phalcon Development Tools
+mkdir /usr/local/phalcon && cd /usr/local/phalcon
+curl -s http://getcomposer.org/installer | php
+rm composer.json
+echo '{' >> composer.json
+echo '    "require": {' >> composer.json
+echo '        "phalcon/devtools": "dev-master"' >> composer.json
+echo '    }' >> composer.json
+echo '}' >> composer.json
+php composer.phar install
+ln -s /usr/local/phalcon/vendor/phalcon/devtools/phalcon.php /usr/bin/phalcon
+chmod ugo+x /usr/bin/phalcon
+
 # Downgrade PHP to 5.3
 /usr/bin/yum downgrade -y php*
 
@@ -18,19 +31,6 @@ sudo ./install
 # Make Phalcon Run
 echo "extension=phalcon.so" >> /etc/php.d/pdo_mysql.ini
 service httpd restart
-
-# Install Phalcon Development Tools
-mkdir /usr/local/phalcon && cd /usr/local/phalcon
-curl -s http://getcomposer.org/installer | php
-rm composer.json
-echo '{' >> composer.json
-echo '    "require": {' >> composer.json
-echo '        "phalcon/devtools": "dev-master"' >> composer.json
-echo '    }' >> composer.json
-echo '}' >> composer.json
-php composer.phar install
-ln -s /usr/local/phalcon/vendor/phalcon/devtools/phalcon.php /usr/bin/phalcon
-chmod ugo+x /usr/bin/phalcon
 
 # Make phpinfo() test
 echo "<?php phpinfo(); ?>" > /home/admin/web/default.domain/public_html/info.php
