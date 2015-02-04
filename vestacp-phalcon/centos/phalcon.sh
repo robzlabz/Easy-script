@@ -2,11 +2,8 @@
 # Created by Robbyn
 # Bash Install Phalcon for Centos 6.x VestaCP
 
-read -p "Downgrade PHP (y/n) [y] : " downgrade
-if [ ! "$downgrade" = 'n']; then
-	# Downgrade PHP to 5.3
-	/usr/bin/yum downgrade php*
-fi
+# Downgrade PHP to 5.3
+/usr/bin/yum downgrade php*
 
 # Install Phalcon Requirement
 /usr/bin/yum install -y php-devel php-mysql gcc libtool
@@ -20,6 +17,7 @@ sudo ./install
 
 # Make Phalcon Run
 echo "extension=phalcon.so" >> /etc/php.d/pdo_mysql.ini
+service httpd restart
 
 # Install Phalcon Development Tools
 mkdir /usr/local/phalcon && cd /usr/local/phalcon
