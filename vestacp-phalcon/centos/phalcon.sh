@@ -4,7 +4,7 @@
 # o-1j+2p-1c+1t-2d-2b+2m-2f-3u-3
 
 # Install Phalcon Requirement
-yum --enablerepo=remi,remi-php54 install php-devel
+yum --enablerepo=remi,remi-php54 install -y php-devel
 yum install -y gcc libtool pcre-devel git
 
 # Install Phalcon
