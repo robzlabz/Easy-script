@@ -6,11 +6,11 @@ dbuser=$2
 dbpass=$3
 
 echo "Create web domain..."
-v-add-web-domain admin $domain $ip
+v-add-domain admin $domain $ip
 
 echo "Setting DNS..."
-v-add-dns-record admin $domain ns1 A $myip
-v-add-dns-record admin $domain ns2 A $myip
+v-add-dns-record admin $domain ns1 A $ip
+v-add-dns-record admin $domain ns2 A $ip
 v-change-dns-record admin $domain 1 "ns1.${domain}."
 v-change-dns-record admin $domain 2 "ns2.${domain}."
 v-change-dns-domain-soa admin $domain "ns1.${domain}"
