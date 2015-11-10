@@ -31,4 +31,6 @@ rm wp-config1.php
 sed "s/password_here/$dbpass/g" wp-config2.php > wp-config.php
 rm wp-config2.php
 
+chown admin:admin .
+
 echo 'Setup Complete'
